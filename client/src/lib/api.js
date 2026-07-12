@@ -3,11 +3,6 @@ import axios from 'axios';
 coimport axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});nst api = axios.create({
   baseURL: '/api',
   headers: {
     'Content-Type': 'application/json',
@@ -33,15 +28,14 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('transitops_token');
       localStorage.removeItem('transitops_user');
-      // Redirect to login unless already on login page
+
       if (window.location.pathname !== '/login') {
         window.location.href = '/login';
       }
     }
+
     return Promise.reject(error);
   }
 );
 
 export default api;
-baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
-
